@@ -1,0 +1,17 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 10px;
+}
+
+.heading {
+	width: fit-content;
+	font-size: 28px;
+	border-bottom: 2px solid currentColor;
+}
+.nav {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
