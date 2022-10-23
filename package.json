@@ -5,6 +5,7 @@
 	"main": "./out/main/index.js",
 	"author": "example.com",
 	"homepage": "https://www.electronjs.org",
+	"license": "MIT",
 	"scripts": {
 		"format": "prettier --write .",
 		"lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
@@ -26,6 +27,7 @@
 		"@emotion/styled": "^11.10.4",
 		"@reduxjs/toolkit": "^1.8.5",
 		"electron-updater": "^4.6.5",
+		"formik": "^2.2.9",
 		"framer-motion": "^6.5.1",
 		"react-icons": "^4.4.0",
 		"react-redux": "^8.0.4",
@@ -36,6 +38,7 @@
 		"@types/node": "16.11.22",
 		"@types/react": "18.0.17",
 		"@types/react-dom": "18.0.6",
+		"@types/react-redux": "^7.1.24",
 		"@typescript-eslint/eslint-plugin": "^5.35.1",
 		"@typescript-eslint/parser": "^5.35.1",
 		"@vitejs/plugin-react": "^2.0.1",

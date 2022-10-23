@@ -14,16 +14,12 @@ export const Header: React.FC = () => {
 		<header className={styles.header}>
 			<h1 className={styles.heading}>My reminders</h1>
 			<nav className={styles.nav}>
-				<Tooltip
-					label={useColorModeValue('Dark theme', 'Light theme')}
-					fontSize='md'
-					borderRadius={5}
-				>
+				<Tooltip label='Toggle theme' fontSize='md' borderRadius={5}>
 					<IconButton
-						aria-label='Dark theme'
+						aria-label={useColorModeValue('Dark theme', 'Light theme')}
 						colorScheme={useColorModeValue('purple', 'orange')}
-						onClick={toggleColorMode}
 						icon={useColorModeValue(<MoonIcon />, <SunIcon />)}
+						onClick={toggleColorMode}
 					/>
 				</Tooltip>
 				<Tooltip label='Settings' fontSize='md' borderRadius={5}>
