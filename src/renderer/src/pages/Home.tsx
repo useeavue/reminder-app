@@ -1,5 +1,5 @@
 import { Box, Stack, useColorModeValue } from '@chakra-ui/react';
-import { Header } from '../../components/Header/Header';
+import { Header } from '../components/Header/Header';
 import { Footer } from '@renderer/components/Footer/Footer';
 
 export const Home: React.FC = () => {
