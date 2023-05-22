@@ -6,13 +6,12 @@ export enum NotificationTimeMeasurement {
 }
 
 export interface Reminder {
-	id?: number;
+	id: number;
 	name: string;
 	creationTime: string;
 	notificationTime: string;
 	eventDate: EventDate;
 	completed: boolean;
-	started: boolean;
 }
 
 export interface EventDate {

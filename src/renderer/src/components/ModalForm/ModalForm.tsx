@@ -13,11 +13,18 @@ import {
 	ModalOverlay,
 	Stack,
 } from '@chakra-ui/react';
+import { useAppDispatch } from '@renderer/hooks/redux';
+import { Reminder } from '@renderer/models/reminder';
+import {
+	addReminder,
+	editReminder,
+} from '@renderer/store/slices/reminderSlice';
 import { Field, Form, Formik } from 'formik';
 
 interface Props {
 	isOpen: boolean;
 	onClose: () => void;
+	value?: Reminder;
 }
 
 interface FormValues {
@@ -28,7 +35,7 @@ interface FormValues {
 	notificationTime: string;
 }
 
-export const ModalForm: React.FC<Props> = ({ isOpen, onClose }) => {
+export const ModalForm: React.FC<Props> = ({ isOpen, onClose, value }) => {
 	const initialValues: FormValues = {
 		name: '',
 		day: new Date().toLocaleDateString('en-CA'),
@@ -36,6 +43,21 @@ export const ModalForm: React.FC<Props> = ({ isOpen, onClose }) => {
 		endTime: '11:00',
 		notificationTime: new Date().toLocaleDateString('en-CA') + 'T09:00',
 	};
+	const getFormValues = (): FormValues => {
+		if (value) {
+			return {
+				name: value.name,
+				day: value.eventDate.day,
+				startTime: value.eventDate.startTime,
+				endTime: value.eventDate.endTime,
+				notificationTime: value.notificationTime,
+			};
+		}
+		return initialValues;
+	};
+
+	const dispatch = useAppDispatch();
+
 	return (
 		<Modal
 			scrollBehavior='inside'
@@ -45,13 +67,35 @@ export const ModalForm: React.FC<Props> = ({ isOpen, onClose }) => {
 		>
 			<ModalOverlay />
 			<ModalContent>
-				<ModalHeader>New reminder</ModalHeader>
+				<ModalHeader>{`${value ? 'Edit' : 'New'} reminder`}</ModalHeader>
 				<ModalCloseButton />
 				<ModalBody>
 					<Formik
-						initialValues={initialValues}
-						onSubmit={(values, actions) => {
-							console.log(values);
+						initialValues={getFormValues()}
+						onSubmit={(formValues, actions) => {
+							const retrieved = {
+								name: formValues.name,
+								creationTime: new Date().toISOString(),
+								eventDate: {
+									day: formValues.day,
+									endTime: formValues.endTime,
+									startTime: formValues.startTime,
+								},
+								notificationTime: formValues.notificationTime,
+								completed: false,
+							};
+
+							if (value) {
+								dispatch(
+									editReminder({
+										...retrieved,
+										id: value.id,
+									})
+								);
+							} else {
+								dispatch(addReminder(retrieved));
+							}
+
 							onClose();
 						}}
 					>

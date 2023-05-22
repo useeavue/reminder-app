@@ -13,18 +13,37 @@ export const reminderState = createSlice({
 	name: 'reminder',
 	initialState,
 	reducers: {
-		addReminder: (state, action: PayloadAction<Reminder>) => {
+		addReminder: (state, action: PayloadAction<Omit<Reminder, 'id'>>) => {
 			state.list.push({
 				...action.payload,
 				id: state.list.length + 1,
 			});
+			console.log(state.list);
+		},
+		editReminder: (state, action: PayloadAction<Reminder>) => {
+			state.list = state.list.map(item => {
+				if (item.id === action.payload.id) {
+					return action.payload;
+				}
+				return item;
+			});
+			console.log(state.list);
 		},
 		deleteReminder: (state, action: PayloadAction<number>) => {
 			state.list = state.list.filter(item => item.id !== action.payload);
 		},
+		markAsCompleted: (state, action: PayloadAction<number>) => {
+			state.list = state.list.map(item => {
+				if (item.id === action.payload) {
+					return { ...item, completed: true };
+				}
+				return item;
+			});
+		},
 	},
 });
 
-export const { addReminder, deleteReminder } = reminderState.actions;
+export const { addReminder, editReminder, deleteReminder, markAsCompleted } =
+	reminderState.actions;
 
 export default reminderState.reducer;
