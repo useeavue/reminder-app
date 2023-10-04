@@ -12,7 +12,7 @@ import {
 	Highlight,
 	useDisclosure,
 } from '@chakra-ui/react';
-import { useAppDispatch } from '@renderer/hooks/redux';
+import { useAppDispatch } from '@renderer/shared/hooks/redux';
 import { Reminder } from '@renderer/models/reminder';
 import { markAsCompleted } from '@renderer/store/slices/reminderSlice';
 import { ModalForm } from '../ModalForm/ModalForm';

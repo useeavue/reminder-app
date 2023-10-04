@@ -18,7 +18,6 @@ export const reminderState = createSlice({
 				...action.payload,
 				id: state.list.length + 1,
 			});
-			console.log(state.list);
 		},
 		editReminder: (state, action: PayloadAction<Reminder>) => {
 			state.list = state.list.map(item => {
@@ -27,7 +26,6 @@ export const reminderState = createSlice({
 				}
 				return item;
 			});
-			console.log(state.list);
 		},
 		deleteReminder: (state, action: PayloadAction<number>) => {
 			state.list = state.list.filter(item => item.id !== action.payload);

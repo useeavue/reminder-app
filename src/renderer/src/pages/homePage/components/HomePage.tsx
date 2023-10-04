@@ -1,10 +1,10 @@
 import { Stack } from '@chakra-ui/react';
-import { Header } from '../components/Header/Header';
-import { Footer } from '@renderer/components/Footer/Footer';
-import { ItemList } from '@renderer/components/ItemList/ItemList';
-import { useAppSelector } from '@renderer/hooks/redux';
+import { Footer } from '@renderer/pages/homePage/components/Footer/Footer';
+import { useAppSelector } from '@renderer/shared/hooks/redux';
+import { Header } from './Header/Header';
+import { ItemList } from './ItemList/ItemList';
 
-export const Home: React.FC = () => {
+export const HomePage: React.FC = () => {
 	const items = useAppSelector(state => state.reminder.list);
 	return (
 		<div className='container'>

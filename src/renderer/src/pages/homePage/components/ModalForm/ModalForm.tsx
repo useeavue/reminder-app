@@ -13,7 +13,7 @@ import {
 	ModalOverlay,
 	Stack,
 } from '@chakra-ui/react';
-import { useAppDispatch } from '@renderer/hooks/redux';
+import { useAppDispatch } from '@renderer/shared/hooks/redux';
 import { Reminder } from '@renderer/models/reminder';
 import {
 	addReminder,
@@ -72,7 +72,7 @@ export const ModalForm: React.FC<Props> = ({ isOpen, onClose, value }) => {
 				<ModalBody>
 					<Formik
 						initialValues={getFormValues()}
-						onSubmit={(formValues, actions) => {
+						onSubmit={formValues => {
 							const retrieved = {
 								name: formValues.name,
 								creationTime: new Date().toISOString(),
